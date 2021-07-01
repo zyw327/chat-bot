@@ -13,3 +13,12 @@ rasa run actions
 ```bash
 rasa shell
 ```
+
+### 模型训练
+```bash
+rasa train
+```
+### 运行api服务
+```bash
+rasa run
+```
