@@ -1,0 +1,83 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+- story: hotel_service_select path 1
+  steps:
+  - intent: hotel_service
+  - action: hotel_service_select_action
+  - active_loop: hotel_service_select_action
+  - slot_was_set:
+    - requested_slot: hotel_service_option
+  - slot_was_set:
+    - hotel_service_option: null 
+  - slot_was_set:
+    - requested_slot: hotel_house_service_option  
+  - slot_was_set:
+    - hotel_house_service_option: null
+  - slot_was_set:
+    - requested_slot: hotel_send_service_option
+  - slot_was_set:
+    - hotel_send_service_option: null
+  - slot_was_set:
+    - requested_slot: hotel_moving_into_again_service_option
+  - slot_was_set:
+    - hotel_moving_into_again_service_option: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: hotel_service
+  - action: hotel_service_select_action
+- story: ask_hotel_service path 1
+  steps:
+  - intent: do_service # 问服务
+  - action: utter_do_service
+  - active_loop: utter_do_service
+  - slot_was_set:
+    - requested_slot: null
+  - intent: ask_wifi #问wifi
+  - action: utter_ask_wifi
+  - active_loop: utter_ask_wifi
+  - slot_was_set:
+    - requested_slot: null
+  - intent: ask_restaurant #问餐厅
+  - action: utter_ask_restaurant
+  - active_loop: utter_ask_restaurant
+  - slot_was_set:
+    - requested_slot: null
+  - intent: do_moving_into_hotel_again #入住酒店
+  - action: utter_do_moving_into_hotel_again
+  - active_loop: utter_do_moving_into_hotel_again
+  - slot_was_set:
+    - requested_slot: null
+  - intent: do_buy_something # 购买
+  - action: utter_do_buy_something
+  - active_loop: utter_do_buy_something
+  - slot_was_set:
+    - requested_slot: null

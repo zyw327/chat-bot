@@ -1,0 +1,145 @@
+version: "2.0"
+
+intents:
+  - inform
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - hotel_service
+  - do_service # 问服务
+  - ask_wifi #问wifi
+  - ask_restaurant #问餐厅
+  - do_moving_into_hotel_again #入住酒店
+  - do_buy_something # 购买
+  - utter_hotel_service
+entities:
+- hotel_service_option
+- hotel_house_service_option
+- hotel_send_service_option
+- hotel_moving_into_again_service_option
+slots:
+  hotel_service_option:
+    type: any
+    auto_fill: false
+    # nfluence_conversation: false
+  hotel_house_service_option:
+    type: any
+    auto_fill: false
+    # nfluence_conversation: false
+  hotel_send_service_option:
+    type: any
+    auto_fill: false
+    # nfluence_conversation: false
+  hotel_moving_into_again_service_option:
+    type: any
+    auto_fill: false
+    # nfluence_conversation: false
+  requested_slot:
+    type: any
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: "嗨，你好吗？"
+  utter_cheer_up:
+  - text: "这是一些开心的图片"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_did_that_help:
+  - text: "有什么我能帮助你的吗?"
+  utter_happy:
+  - text: "完美，继续"
+  utter_goodbye:
+  - text: "Bye"
+  utter_iamabot:
+  - text: "我是一个机器人，创造者是okgoes"
+  utter_do_service:
+  - text: "好的马上处理"
+  - text: "好的"
+  utter_do_buy_something:
+  - text: "好的，马上送到"
+  utter_hotel_service:
+  - text: "请说酒店服务"
+  utter_ask_wifi:
+  - text: "wifi账号是：shulvxiaomi  密码是:xiaomi110"
+  utter_ask_restaurant:
+  - text: "餐厅在酒店3楼"
+  - text: "吃饭在酒店3楼"
+  - text: "酒店3楼有餐厅"
+  utter_do_moving_into_hotel_again:
+  - text: "好的，马上办理续住"
+  utter_ask_hotel_service_option:
+  - text: "请问有什么可以帮您的吗？（如下问题请直接选择，其他问题请直接输入内容）"
+    buttons:
+      - title: "1、获取WIFI"
+        payload: '/inform{"hotel_service_option": "h1"}'
+      - title: "2、客房打扫"
+        payload: '/inform{"hotel_service_option": "h2"}'
+      - title: "3、一键送物"
+        payload: '/inform{"hotel_service_option": "h3"}'
+      - title: "4、客房点餐"
+        payload: '/inform{"hotel_service_option": "h4"}'
+      - title: "5、洗衣服务"
+        payload: '/inform{"hotel_service_option": "h5"}'
+      - title: "6、一键续住"
+        payload: '/inform{"hotel_service_option": "h6"}'
+  utter_ask_hotel_house_service_option:
+  - text: "请问哪里需要处理呢？"
+    buttons:
+      - title: "1、床单更换"
+        payload: '/inform{"hotel_house_service_option": "d1"}'
+      - title: "2、被罩更换"
+        payload: '/inform{"hotel_house_service_option": "d2"}'
+      - title: "3、毛巾更换"
+        payload: '/inform{"hotel_house_service_option": "d3"}'
+      - title: "4、洗手台不干净"
+        payload: '/inform{"hotel_house_service_option": "d4"}'
+      - title: "5、马桶不干净"
+        payload: '/inform{"hotel_house_service_option": "d5"}'
+      - title: "6、其他"
+        payload: '/inform{"hotel_house_service_option": "d6"}'
+  utter_ask_hotel_send_service_option:
+  - text: "请问您需要什么？"
+    buttons:
+      - title: "1、矿泉水"
+        payload: '/inform{"hotel_send_service_option": "n1"}'
+      - title: "2、拖鞋"
+        payload: '/inform{"hotel_send_service_option": "n2"}'
+      - title: "3、牙具"
+        payload: '/inform{"hotel_send_service_option": "n3"}'
+      - title: "4、毛巾"
+        payload: '/inform{"hotel_send_service_option": "n4"}'
+      - title: "5、其他"
+        payload: '/inform{"hotel_send_service_option": "n5"}'
+  utter_ask_hotel_moving_into_again_service_option:
+  - text: "请问您需要续住几天？"
+    buttons:
+      - title: "1、1天"
+        payload: '/inform{"hotel_moving_into_again_service_option": "z1"}'
+      - title: "2、2天"
+        payload: '/inform{"hotel_moving_into_again_service_option": "z2"}'
+      - title: "3、3天"
+        payload: '/inform{"hotel_moving_into_again_service_option": "z3"}'
+      - title: "4、4天"
+        payload: '/inform{"hotel_moving_into_again_service_option": "z4"}'
+      - title: "5、5天"
+        payload: '/inform{"hotel_moving_into_again_service_option": "z5"}'
+actions:
+- utter_do_service
+- utter_do_buy_something
+- utter_ask_wifi
+- utter_ask_restaurant
+- utter_do_moving_into_hotel_again
+- utter_ask_hotel_send_service_option
+- utter_ask_hotel_house_service_option
+- utter_ask_hotel_moving_into_again_service_option
+- utter_hotel_service
+- hotel_service_select_action
+# - utter_ask_hotel_service_option
+forms:
+  hotel_service_select_action: {}
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
